@@ -1,0 +1,2 @@
+class ZeroFunds(Exception):
+    pass

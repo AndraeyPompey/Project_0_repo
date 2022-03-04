@@ -1,0 +1,5 @@
+I am going to start the process by deciding what kind of information needs, at a minimum to handle all of
+my user's request to my application.
+
+Business rules:
+Customers may not have same id number
