@@ -3,7 +3,7 @@ from flask import Flask, request, jsonify
 
 from custom_exceptions.bad_customer_info import BadCustomerInfo
 from custom_exceptions.id_not_found import IdNotFound
-from custom_exceptions.zero_funds_exception import ZeroFunds
+from custom_exceptions.insufficient_funds_exception import ZeroFunds
 from data_access_layer.customer_data_access_object.customer_dao_implementation import CustomerDaoImplementation
 from entities_customers_bank_account_info.customer_class_information import Customer_name
 from tests.test_customer_service import customer_service
@@ -173,7 +173,7 @@ def create_customer():
         customer_data: dict = request.get_json() #locating in the post request body, turning my customer dao into a dictionary
         customer_name = Customer_name(customer_data["firstName"], customer_data["lastName"], customer_data["custIdNumber"])
         result = customer_service.service_create_customer(customer_name)
-        result_dictionary = result.convert_to_dictionary()
+        result_dictionary = result.convert_to_dictionary
         result_json = jsonify(result_dictionary)
         return result_json, 201
     except BadCustomerInfo as e:
@@ -198,7 +198,7 @@ def get_customer_by_id(id:str):
     try:
         result: Customer_name = customer_service.service_get_cust_by_id(int(id))
         # found an issue that could break code. need to do TDD to add code to my service layer to handle int(id)
-        result_dictionary = result.convert_to_dictionary()
+        result_dictionary = result.convert_to_dictionary
         return jsonify(result_dictionary), 200
     except BadCustomerInfo as e:
         message = {
